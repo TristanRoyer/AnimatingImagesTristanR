@@ -70,10 +70,10 @@ blueGhost:scale (-1, 1)
 --make the pink ghost transparent
 pinkGhost.alpha = 1
 
--- Function: MoveShip
+-- Function: MoveblueGhost
 -- Input: this function accepts an event listener
 -- Output: none
--- Description: This function adds the scroll speed to the y-value of the ship
+-- Description: This function adds the scroll speed to the x-value of the ghost
 local function MoveblueGhost(event)
 	-- add the scroll speed to the y-value of the ship
 	blueGhost.x = blueGhost.x + scrollSpeed1
@@ -93,11 +93,16 @@ local function MoveblueGhost(event)
  
 end
 
+-- Function: Movepacman
+-- Input: this function accepts an event listener
+-- Output: none
+-- Description: This function adds the scroll speed to the y-value of pacman
+
 local function Movepacman(event)
 	-- add the scroll speed to the y-value of the ship
          pacman.y = pacman.y + scrollSpeed2
 
-	-- changes the direction when it reaches the end of screen
+	-- changes the direction and speed when it reaches the end of screen
 	if (pacman.y > 750) then
   		scrollSpeed2 = -5
   		pacman.yScale = -1
@@ -108,17 +113,24 @@ local function Movepacman(event)
   		pacman.yScale = 1
   	end
 
+-- Makes certain objects visible and plays a sound if pacman's y is greater than that of
+-- the fruit
   if (pacman.y > Fruit.y) then 
- powerUpSoundChannel = audio.play(powerUpSound)
-blueGhost.isVisible = false
-pinkGhost.isVisible = false
-blueEdibleGhost.isVisible = true
-pinkEdibleGhost.isVisible = true
-PowerUpText.isVisible = true
-end
+   powerUpSoundChannel = audio.play(powerUpSound)
+   blueGhost.isVisible = false
+   pinkGhost.isVisible = false
+   blueEdibleGhost.isVisible = true
+   pinkEdibleGhost.isVisible = true
+   PowerUpText.isVisible = true
+  else PowerUpText.isVisible = false
+  end
 
 end
 
+-- Function: MovepinkGhost
+-- Input: this function accepts an event listener
+-- Output: none
+-- Description: This function adds the scroll speed to the x-value of the ghost
 local function MovepinkGhost(event)
 	-- add the scroll speed to the y-value of the ship
 	pinkGhost.x = pinkGhost.x + scrollSpeed3
@@ -132,7 +144,7 @@ local function MovepinkGhost(event)
   		pinkGhost.alpha = pinkGhost.alpha - 0.25
  	end
 
--- changes the direction when it reaches the end of the screen
+-- changes the direction and speed when it reaches the end of the screen
 	if (pinkGhost.x < 85) then
   		scrollSpeed3 = 5
   		pinkGhost.xScale = 1
@@ -150,7 +162,7 @@ local function MoveblueEdibleGhost(event)
   -- add the scroll speed to the y-value of the ship
   blueEdibleGhost.x = blueEdibleGhost.x + scrollSpeed4
 
-  -- changes the direction when it reaches the end of the screen
+  -- changes the direction and speed when it reaches the end of the screen
   if (blueEdibleGhost.x > 980) then
       scrollSpeed4 = -4
       blueEdibleGhost.yScale = blueEdibleGhost.yScale + 1
@@ -193,7 +205,8 @@ local function MovepinkEdibleGhost(event)
 end
 
 local function spinFruit (event)
- 
+
+-- makes the fruit rotate clockwise
  Fruit.rotation = Fruit.rotation + 0.5
 
 end
@@ -201,22 +214,22 @@ end
 
 
 
---MoveShip will be called over and over again
+--MoveblueGhost will be called over and over again
 Runtime:addEventListener("enterFrame", MoveblueGhost)
 
---MoveShip will be called over and over again
+--MovepinkGhost will be called over and over again
 Runtime:addEventListener("enterFrame", MovepinkGhost)
 
---MoveRocketShip will be called over and over again
+--Movepacman will be called over and over again
 Runtime:addEventListener("enterFrame", Movepacman)
 
---MoveShip will be called over and over again
+--MovepinkEdibleGhost will be called over and over again
 Runtime:addEventListener("enterFrame", MovepinkEdibleGhost)
 
---MoveRocketShip will be called over and over again
+--MoveblueEdibleGhost will be called over and over again
 Runtime:addEventListener("enterFrame", MoveblueEdibleGhost)
 
---MoveRocketShip will be called over and over again
+-- spinFruit will be called over and over again
 Runtime:addEventListener("enterFrame", spinFruit)
 
 
