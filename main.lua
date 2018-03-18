@@ -51,6 +51,7 @@ local powerUpSound = audio.loadSound("Sounds/Pacman Power Sound Effect.mp3")
 local powerUpSoundChannel
 OriginalSoundChannel = audio.play(originalSound)
 
+--Set the x and y co-ordinates of the sprites
 pinkGhost.x = 100
 pinkGhost.y = 50
 blueGhost.x = 900
@@ -158,6 +159,10 @@ local function MovepinkGhost(event)
 
  end
 
+-- Function: MoveblueEdibleGhost
+-- Input: this function accepts an event listener
+-- Output: none
+-- Description: This function adds the scroll speed to the x-value of the ghost
 local function MoveblueEdibleGhost(event)
   -- add the scroll speed to the y-value of the ship
   blueEdibleGhost.x = blueEdibleGhost.x + scrollSpeed4
@@ -176,9 +181,10 @@ local function MoveblueEdibleGhost(event)
  
 end
 
-
-
-
+-- Function: MovepinkEdibleGhost
+-- Input: this function accepts an event listener
+-- Output: none
+-- Description: This function adds the scroll speed to the x-value of the ghost
 local function MovepinkEdibleGhost(event)
   -- add the scroll speed to the y-value of the ship
   pinkEdibleGhost.x = pinkEdibleGhost.x + scrollSpeed5
@@ -204,6 +210,10 @@ local function MovepinkEdibleGhost(event)
 
 end
 
+-- Function: spinFruit
+-- Input: this function accepts an event listener
+-- Output: none
+-- Description: This function adds the scroll speed to the x-value of the ghost
 local function spinFruit (event)
 
 -- makes the fruit rotate clockwise
