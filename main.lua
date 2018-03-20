@@ -15,14 +15,16 @@ scrollSpeed3 = 5
 scrollSpeed4 = 5
 scrollSpeed5 = 5
 
+-- displays a background image with width and height
+local backgroundImage = display.newImageRect("Images/background.png",2048,1536)
+
 -- create text object, set its position and make it invisible
 local PowerUpText 
-PowerUpText = display.newText ("PowerUp!",725, 700, nil, 70)
-PowerUpText:setTextColor (1, 1, 0)
+PowerUpText = display.newText ("PowerUp!",725, 700, Arial, 70)
+PowerUpText:setTextColor (1, 0, 1)
 PowerUpText.isVisible = false
 
--- background image with width and height 
-display.setDefault("background", 167/255, 180/255,240/255)
+
 
 --character image with width and height
 local blueGhost = display.newImageRect("Images/blue.png", 200, 100)
