@@ -24,6 +24,10 @@ PowerUpText.isVisible = false
 -- background image with width and height 
 display.setDefault("background", 167/255, 180/255,240/255)
 
+--background image withy width and height
+local backgroundImage = display.newImageRect("Images/background.png", 2048,1536)
+
+
 --character image with width and height
 local blueGhost = display.newImageRect("Images/blue.png", 200, 100)
 
