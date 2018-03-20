@@ -15,14 +15,15 @@ scrollSpeed3 = 5
 scrollSpeed4 = 5
 scrollSpeed5 = 5
 
+-- displays a background image with width and height
+local backgroundImage = display.newImageRect("Images/background.png",2048,1536)
+
 -- create text object, set its position and make it invisible
 local PowerUpText 
-PowerUpText = display.newText ("PowerUp!",725, 700, nil, 70)
-PowerUpText:setTextColor (1, 1, 0)
+PowerUpText = display.newText ("PowerUp!",725, 700, Arial, 70)
+PowerUpText:setTextColor (1, 0, 1)
 PowerUpText.isVisible = false
 
--- background image with width and height 
-display.setDefault("background", 167/255, 180/255,240/255)
 
 --background image withy width and height
 local backgroundImage = display.newImageRect("Images/background.png", 2048,1536)
@@ -72,7 +73,7 @@ blueEdibleGhost.y = 350
 --change the direction where the blueGhost is facing
 blueGhost:scale (-1, 1)
 
---make the pink ghost transparent
+--make the pink ghost opaque
 pinkGhost.alpha = 1
 
 -- Function: MoveblueGhost
@@ -118,7 +119,7 @@ local function Movepacman(event)
   		pacman.yScale = 1
   	end
 
--- Makes certain objects visible and plays a sound if pacman's y is greater than that of
+-- Makes certain objects and text visible and plays a sound if pacman's y is greater than that of
 -- the fruit
   if (pacman.y > Fruit.y) then 
    powerUpSoundChannel = audio.play(powerUpSound)
@@ -171,7 +172,7 @@ local function MoveblueEdibleGhost(event)
   -- add the scroll speed to the y-value of the ship
   blueEdibleGhost.x = blueEdibleGhost.x + scrollSpeed4
 
-  -- changes the direction and speed when it reaches the end of the screen
+  -- changes the direction, speed and size when it reaches the end of the screen
   if (blueEdibleGhost.x > 980) then
       scrollSpeed4 = -4
       blueEdibleGhost.yScale = blueEdibleGhost.yScale + 1
@@ -197,17 +198,21 @@ local function MovepinkEdibleGhost(event)
   if (pinkEdibleGhost.x > 900) then
       scrollSpeed5 = -5
       pinkEdibleGhost.xScale = -1
+
       --makes it fade out when it reaches the end of the screen
       pinkEdibleGhost.alpha = pinkEdibleGhost.alpha - 0.25
   end
+
 -- changes the direction when it reaches the end of the screen
   if (pinkEdibleGhost.x < 85) then
       scrollSpeed5 = 5
       pinkEdibleGhost.xScale = 1
+
       --makes it fade in when it reaches the end of the screen
       pinkEdibleGhost.alpha = pinkEdibleGhost.alpha + 0.10
     end
-     -- sets it to be opaque
+
+     -- sets it to be opaque if it is fully transparent
     if (pinkEdibleGhost.alpha == 0) then
       pinkEdibleGhost.alpha = 1
     end
